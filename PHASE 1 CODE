@@ -1,0 +1,25 @@
+students = {
+    "Aarav": [88, 92, 79, 85, 95],
+    "Priya": [76, 81, 88, 70, 90],
+    "Rohan": [55, 60, 65, 58, 62],
+}
+
+def grade(p):
+    if p >= 90: return "A+"
+    elif p >= 75: return "A"
+    elif p >= 60: return "B"
+    elif p >= 40: return "C"
+    else: return "F"
+
+results = []
+for name, marks in students.items():
+    total = sum(marks)
+    pct = total / (len(marks) * 100) * 100
+    results.append((name, total, round(pct, 2), grade(pct)))
+
+# Rank by percentage (highest first)
+results.sort(key=lambda x: x[2], reverse=True)
+
+print(f"{'Rank':<5}{'Name':<10}{'Total':<8}{'%':<8}{'Grade'}")
+for i, (name, total, pct, g) in enumerate(results, 1):
+    print(f"{i:<5}{name:<10}{total:<8}{pct:<8}{g}")
